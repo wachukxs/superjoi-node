@@ -33,8 +33,8 @@ app.locals.email = process.env.THE_EMAIL;
 app.use(cookieParser(process.env.SESSION_SECRET))
 
 
-app.use('/search', [searchRoutes]);
-app.use([indexRoutes])
+app.use('/api/search', [searchRoutes]);
+app.use('/api', [indexRoutes])
 
 // must be last route because of 404 pages/error
 app.use(function (req, res) {
