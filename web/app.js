@@ -1,6 +1,8 @@
 // const app = require('express')(); // ?
 const express = require('express');
 const app = express();
+const cors = require('cors')
+app.use(cors())
 // const bodyParser = require('body-parser'); // https://stackoverflow.com/a/24330353/9259701
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
@@ -36,8 +38,7 @@ app.use([indexRoutes])
 
 // must be last route because of 404 pages/error
 app.use(function (req, res) {
-    res.render('pages/404', { // check the url they navigated to that got them lost, and try to offer suggestions in the front end that'll match why they got lost... maybe they missed a letter in their statecode url
-    });
+    res.send('Uhmmmm, 404. What do you want?');
 });
 
 

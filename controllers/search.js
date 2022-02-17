@@ -3,10 +3,10 @@ let router = express.Router();
 
 const services = require('../services')
 
-router.post('/videos', express.json(), services.videosService.search);
+router.get('/videos', express.json(), services.videosService.search);
 
-router.post('/playlist', services.playlistService.search);
+router.get('/playlist', services.playlistService.search);
 
-router.post('/', services.searchService.search)
+router.get('/', services.searchService.search)
 
 module.exports = router;

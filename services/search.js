@@ -1,3 +1,6 @@
+const { google } = require('googleapis');
+const axios = require('axios'); 
+
 module.exports = {
     /**
      * needs work
@@ -26,10 +29,22 @@ module.exports = {
      * @returns 
      */
 
-    search(req, res) {
+    async search(req, res) {
+        const youtube = google.youtube({
+            version: 'v3',
+            auth: process.env.YOUTUBE_API_KEY
+        })
 
-        
-      
+        const resp = await youtube.search.list({
+            part: 'id,snippet',
+            q: req.query.queryString, // substitute with the query string
+        })
+
+        res.send(resp.data)
+
+        // console.log('what was searched', req.params);
+        // console.log('what was ???queried', req.query.queryString);
+        // res.send('OK')
       
     },
 }
