@@ -1,3 +1,7 @@
-# Google api node js client
+# Set up
 
-* https://github.com/googleapis/google-api-nodejs-client
+* run `npm install`
+* `npm start` - runs server on port 4005
+
+
+I integrated Google's YouTube API.
