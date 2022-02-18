@@ -3,7 +3,7 @@ let router = express.Router();
 
 const services = require('../services')
 
-router.get('/videos', express.json(), services.videosService.search);
+router.get('/videos/details', express.json(), services.videosService.fetchComments);
 
 router.get('/playlist', services.playlistService.search);
 

@@ -1,35 +1,69 @@
+const { google } = require('googleapis');
+const axios = require('axios');
+
+
 module.exports = {
-    /**
-     * needs work
-     * @param {*} req 
-     * @param {*} res 
-     * @returns http status code
-     */
-    delete(req, res) {
-        
+    // get ratings and no. of comments?
+    async fetchComments(req, res) {
+
+        console.log('what was searched', req.query);
+
+
+        try {
+            if (req.query.videoId) {
+
+                const youtube = google.youtube({
+                    version: 'v3',
+                    auth: process.env.YOUTUBE_API_KEY
+                })
+
+                const resp = await youtube.commentThreads.list({
+
+                    videoId: req.query.videoId,
+                    part: 'id,snippet,replies'
+                })
+
+                res.send(resp.data)
+            } else {
+                res.sendStatus(400)
+            }
+
+        } catch (error) {
+            console.error('ERR details', error)
+            res.sendStatus(400)
+        }
+
     },
 
-    /**
-     * WHY IS TENURE == Roommate ??? can't we do better ??
-     * @param {*} req 
-     * @param {*} res 
-     * @returns 
-     */
-    save(req, res, next) {
-        
-    },
 
-    /**
-     * needs work
-     * @param {*} req 
-     * @param {*} res 
-     * @returns 
-     */
+    async commentReplies(req, res) {
 
-    search(req, res) {
+        console.log('what was searched', req.query);
 
-        
-      
-      
+
+        try {
+            if (req.query.videoId) {
+
+                const youtube = google.youtube({
+                    version: 'v3',
+                    auth: process.env.YOUTUBE_API_KEY
+                })
+
+                const resp = await youtube.comments.list({
+
+                    id: req.query.commentId,
+                    part: 'id,snippet'
+                })
+
+                res.send(resp.data)
+            } else {
+                res.sendStatus(400)
+            }
+
+        } catch (error) {
+            console.error('ERR details', error)
+            res.sendStatus(400)
+        }
+
     },
 }
