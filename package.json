@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --trace-warnings --unhandled-rejections=warn ./index.js"
   },
+  "engines": { "node" : "14.16.0" },
   "author": "@wachukxs",
   "license": "ISC",
   "dependencies": {
